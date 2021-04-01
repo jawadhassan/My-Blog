@@ -102,8 +102,8 @@
 					</div>
 			
 				<nav class="blog-pagination" th:if="${paginationPosts.totalPages gt 0}">
-					<a class="btn btn-outline-primary" th:classappend="${paginationPosts.number eq 0} ? 'disabled'" th:href="@{/?page={id}(id=${paginationPosts.number lt 2 ? 1 : paginationPosts.number})}">Older</a>
-					<a class="btn btn-outline-secondary" th:classappend="${paginationPosts.number + 1 eq paginationPosts.totalPages} ? 'disabled'" th:href="@{/?page={id}(id=${paginationPosts.number + 2})}">Newer</a>
+					<a class="btn btn-outline-primary" th:classappend="${paginationPosts.number eq 0} ? 'disabled'" th:href="@{/?page={id}(id=${paginationPosts.number lt 2 ? 1 : paginationPosts.number})}">Newer</a>
+					<a class="btn btn-outline-secondary" th:classappend="${paginationPosts.number + 1 eq paginationPosts.totalPages} ? 'disabled'" th:href="@{/?page={id}(id=${paginationPosts.number + 2})}">Older</a>
 				</nav>
 			</div>
 		

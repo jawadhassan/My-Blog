@@ -18,42 +18,41 @@ import com.example.myblog.entities.Post;
 
 @Controller
 public class HomeController {
-	
+
 	PostRepository postRepository;
-	
+
 	@Autowired
 	public HomeController(PostRepository postRepository) {
 		this.postRepository = postRepository;
 	}
 
-
 	@GetMapping("/")
 	public String home(HttpServletRequest request, Model model) {
-		
-		int page = 0; //default page number is 0 (yes it is weird)
-        int size = 3; //default page size is 3
-        
-        if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
-            page = Integer.parseInt(request.getParameter("page")) - 1;
-        }
 
-        
-		List<Post> cards = new ArrayList<Post>();
-//	    postRepository.findAll().forEach(i -> posts.add(i));
-		postRepository.isFeaturedIsTrue().forEach(i -> cards.add(i));
-		model.addAttribute("cards",cards);
-		
-		if(postRepository.isBannerIsTrue().isPresent()) {
-			Post banner = postRepository.isBannerIsTrue().get();
-			model.addAttribute("banner",banner);
+		int page = 0; // default page number is 0
+		//TODO:Make the size of the page dynamic if possible
+		int size = 3; // default page size is 3
+
+		if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
+			page = Integer.parseInt(request.getParameter("page")) - 1;
 		}
+
+		List<Post> cards = new ArrayList<Post>();
 		
-		Pageable pageRequest = PageRequest.of(
-		            page, size, Sort.by("createdAt").descending());
+		postRepository.isFeaturedIsTrue().forEach(i -> cards.add(i));
 		
-		model.addAttribute("paginationPosts",postRepository.findByIsFeaturedAndIsBanner(false,false, pageRequest));
-				
+		model.addAttribute("cards", cards);
+
+		if (postRepository.isBannerIsTrue().isPresent()) {
+			Post banner = postRepository.isBannerIsTrue().get();
 		
+			model.addAttribute("banner", banner);
+		}
+
+		Pageable pageRequest = PageRequest.of(page, size, Sort.by("createdAt").descending());
+
+		model.addAttribute("paginationPosts", postRepository.findByIsFeaturedAndIsBanner(false, false, pageRequest));
+
 		return "home";
 	}
 }
