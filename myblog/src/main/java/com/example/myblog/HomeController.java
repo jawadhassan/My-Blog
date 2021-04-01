@@ -3,6 +3,8 @@ package com.example.myblog;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,10 +28,17 @@ public class HomeController {
 
 
 	@GetMapping("/")
-	public String home(Model model) {
-		List<Post> cards = new ArrayList<Post>();
-		List<Post> posts = new ArrayList<Post>();
+	public String home(HttpServletRequest request, Model model) {
 		
+		int page = 0; //default page number is 0 (yes it is weird)
+        int size = 3; //default page size is 3
+        
+        if (request.getParameter("page") != null && !request.getParameter("page").isEmpty()) {
+            page = Integer.parseInt(request.getParameter("page")) - 1;
+        }
+
+        
+		List<Post> cards = new ArrayList<Post>();
 //	    postRepository.findAll().forEach(i -> posts.add(i));
 		postRepository.isFeaturedIsTrue().forEach(i -> cards.add(i));
 		model.addAttribute("cards",cards);
@@ -39,12 +48,11 @@ public class HomeController {
 			model.addAttribute("banner",banner);
 		}
 		
-		Pageable page = PageRequest.of(
-		            0, 3, Sort.by("createdAt").descending());
-		postRepository.findByIsFeaturedAndIsBanner(false,false, page).forEach(i -> posts.add(i));
+		Pageable pageRequest = PageRequest.of(
+		            page, size, Sort.by("createdAt").descending());
 		
-		model.addAttribute("posts",posts);
-		
+		model.addAttribute("paginationPosts",postRepository.findByIsFeaturedAndIsBanner(false,false, pageRequest));
+				
 		
 		return "home";
 	}

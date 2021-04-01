@@ -85,9 +85,8 @@
 		<main class="container" role="main">
 			<div class="row">
 				<div class="col-md-8 blog-main">
-					<h3 class="pg-3 mb-4 font-italic border-bottom"> From the Firehouse</h3>
-				
-					<div class="blog-post" th:each="post : ${posts}">
+					<h3 class="pg-3 mb-4 font-italic border-bottom"> From the Firehouse</h3>	
+					<div class="blog-post" th:each="post : ${paginationPosts}">
 						<h2 class="blog-post-title" th:text=${post.title}>Sample blog post</h2>
 						<p class="blog-post-meta" th:text="${#dates.format(post.createdAt, 'MMM dd yyyy')}">
 							January 1, 2014 by
@@ -98,13 +97,13 @@
 						</p>
 						<hr>
 						<p th:text=${post.content}>
-							Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+							Cum sociis natoque penatibus et magnis, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
 						</p>
 					</div>
 			
-				<nav class="blog-pagination">
-					<a class="btn btn-outline-primary" th:href="">Older</a>
-					<a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+				<nav class="blog-pagination" th:if="${paginationPosts.totalPages gt 0}">
+					<a class="btn btn-outline-primary" th:classappend="${paginationPosts.number eq 0} ? 'disabled'" th:href="@{/?page={id}(id=${paginationPosts.number lt 2 ? 1 : paginationPosts.number})}">Older</a>
+					<a class="btn btn-outline-secondary" th:classappend="${paginationPosts.number + 1 eq paginationPosts.totalPages} ? 'disabled'" th:href="@{/?page={id}(id=${paginationPosts.number + 2})}">Newer</a>
 				</nav>
 			</div>
 		

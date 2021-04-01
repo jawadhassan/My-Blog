@@ -3,6 +3,7 @@ package com.example.myblog.data;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -15,7 +16,7 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
 	
 	Optional<Post> isBannerIsTrue();
 	
-	List<Post> findByIsFeaturedAndIsBanner(boolean condition, boolean condition1, Pageable pageable);
+	Page<Post> findByIsFeaturedAndIsBanner(boolean condition, boolean condition1, Pageable pageable);
 	
 
 }
