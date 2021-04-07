@@ -39,12 +39,12 @@
 				<div class="col-12 mt-3 d-flex justify-content-end align-items-end">
 					<button class="btn btn-success" data-toggle="modal" data-target="#createPost" type="button">Create Post</button>
 				</div>
-				<div class="modal fade" id="createPost" aria-labelledby="createPost" aria-hidden="true">
+				<div class="modal fade" id="createPost" tabindex="-1" aria-labelledby="createPost" aria-hidden="true">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title">Add Post</h5>
-								<button type="button" class="close">
+								<h5 class="modal-title" id="createPostLabel">Add Post</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times</span>
 								</button>
 							</div>
@@ -92,12 +92,12 @@
 						</table>
 					</div>
 				</div>
-				<div class="modal fade" id="editPost" aria-labelledby="editPost" aria-hidden="true">
+				<div class="modal fade" id="editPost" tabindex="-1" aria-labelledby="editPost" aria-hidden="true">
 					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title">Edit Post</h5>
-								<button type="button" class="close">
+								<h5 class="modal-title" id="editPostLabel">Edit Post</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times</span>
 								</button>
 							</div>
@@ -113,11 +113,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="modal fade" id="confirmDelete" aria-labelledby="confirmDelete" aria-hidden="true">
+				<div class="modal fade" id="confirmDelete" tabindex="-1" aria-labelledby="confirmDelete" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">	
 						<div class="modal-body">
-							<button type="button" class="close">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times</span>
 							</button>
 							Performing Delete cannot be undone, Are you sure?
@@ -130,7 +130,7 @@
 					</div>
 				</div>
 			</main>
-			<footer class="blog-footer">
+			<footer class="blog-footer footer">
 				<p>Theme inspired by Bootsrap Blog Theme
 					<a href="#">Spring Blog</a>
 					by
