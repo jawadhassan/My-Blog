@@ -15,7 +15,7 @@
 			<header class="border-bottom">
 				<div class="container">
 					<nav class="navbar navbar-expand-md navbar-light">
-						<a class="navbar-brand" href="#">Dashboard</a>
+						<a class="navbar-brand" th:href="@{/admin/}">Dashboard</a>
 						<button class="navbar-toggler collapsed" type="button"
 							data-toggle="collapse" data-target="#navbarMenu" aria-contorls="navbarMenu"
 							aria-expanded="false" aria-label="Toggle Navigation"
@@ -25,7 +25,7 @@
 						<div id="navbarMenu" class="collapse navbar-collapse">
 							<ul class="navbar-nav mr-auto">
 								<li class="nav-item">
-									<a class="nav-link"> Posts</a></li>
+									<a class="nav-link" th:href="@{/admin/posts}"> Posts</a></li>
 								<li class="nav-item">
 									<a class="nav-link">Users</a></li>	
 							</ul>
@@ -35,7 +35,7 @@
 					</nav>
 				</div>
 			</header>
-			<main class="container mb-3">
+			<main class="container mb-3" role="main">
 				<div class="card mb-3 mt-3">
 					<div class="card-header">
 						Overview
@@ -44,41 +44,45 @@
 					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
 				</div>
 			  </div>
-			  <table class="table table-striped table-bordered">
-					<thead class="thead-light">
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Name</th>
-							<th scope="col">Email</th>
-							<th scope="col">Joined</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<th scope="row">1</th>
-							<td>James</td>
-							<td>jimmy@email</td>
-							<td>13 July 2020</td>
-						</tr>
-						<tr>
-							<th scope="row">2</th>
-							<td>James</td>
-							<td>jimmy@email</td>
-							<td>13 July 2020</td>
-						</tr>
-						<tr>
-							<th scope="row">3</th>
-							<td>James</td>
-							<td>jimmy@email</td>
-							<td>13 July 2020</td>
-						</tr>
-					</tbody>
-			  </table>
-			  <div id="editor">
-				<p>This is the editor content.</p>
-			  </div>
+				<div class="card">
+					<div class="card-header">
+						Users
+					</div>
+					<div class="card-body">
+						<table class="table table-striped table-bordered">
+									<thead class="thead-light">
+										<tr>
+											<th scope="col">#</th>
+											<th scope="col">Name</th>
+											<th scope="col">Email</th>
+											<th scope="col">Joined</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th scope="row">1</th>
+											<td>James</td>
+											<td>jimmy@email</td>
+											<td>13 July 2020</td>
+										</tr>
+										<tr>
+											<th scope="row">2</th>
+											<td>James</td>
+											<td>jimmy@email</td>
+											<td>13 July 2020</td>
+										</tr>
+										<tr>
+											<th scope="row">3</th>
+											<td>James</td>
+											<td>jimmy@email</td>
+											<td>13 July 2020</td>
+										</tr>
+									</tbody>
+							</table>
+					</div>	
+				</div>	
 			</main>
-			<footer class="blog-footer">
+			<footer class="footer">
 				<p>Theme inspired by Bootsrap Blog Theme
 					<a href="#">Spring Blog</a>
 					by
@@ -87,11 +91,7 @@
 				<p>
 					<a href="#">Back to top</a>
 				</p>
-			</footer>
-			<script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
-			<script>
-    			CKEDITOR.replace( 'editor' );
-			</script>	
+			</footer>	
 			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
