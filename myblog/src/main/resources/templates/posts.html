@@ -175,7 +175,10 @@
 					url: "/admin/savepost",
 					success : function(result){
 						console.log('Success');
-						BtnReset(elem);
+						$(elem).html(
+								 `<span class="glyphicon glyphicon-align-left" role="status" aria-hidden="true"></span> Saved`	
+						);
+						//BtnReset(elem);
 					},
 					error : function(e){
 						console.log("Error:"+ e);
