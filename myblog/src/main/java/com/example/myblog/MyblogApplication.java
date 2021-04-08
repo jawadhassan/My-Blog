@@ -41,7 +41,7 @@ public class MyblogApplication {
 		             , "You will learn how to build blog based on Spring Boot Step By Step, Bootstrap and Thymeleaf is used for frontend ",false,true));
 	  
 	  
-	  post.save(new
+	 /* post.save(new
 		        Post("Sample blog post 1", new Date(),
 		             "Cum sociis natoque penatibus et magnis nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum."
 		             , "This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.",false,false));
@@ -77,7 +77,7 @@ public class MyblogApplication {
 	  post.save(new
 		        Post("Sample blog post 7", new Date(),
 		             "Cum sociis natoque penatibus et magnis nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum."
-		             , "This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.",false,false));
+		             , "This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.",false,false));*/
 
 	  
 	  } }; }
