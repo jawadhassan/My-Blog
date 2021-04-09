@@ -32,7 +32,9 @@ public class AdminController {
 	}
 	
 	@PostMapping(path="/savepost", consumes = MediaType.TEXT_HTML_VALUE)
-	public String savePost(@RequestBody String body) {
+	public String savePost(@RequestBody String body) throws InterruptedException {
+		
+		Thread.sleep(2000);
 		
 		Post post = new Post();
 		post.setTitle("HTML POST");
