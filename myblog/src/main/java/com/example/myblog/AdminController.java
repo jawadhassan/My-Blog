@@ -32,7 +32,7 @@ public class AdminController {
 	}
 	
 	@PostMapping(path="/savepost", consumes = MediaType.TEXT_HTML_VALUE)
-	public String savePost(@RequestBody String body) throws InterruptedException {
+	public boolean savePost(@RequestBody String body) throws InterruptedException {
 		
 		Thread.sleep(2000);
 		
@@ -42,7 +42,7 @@ public class AdminController {
 		post.setSummary("Summary");
 		post.setCreatedAt(new Date());
 		postRepository.save(post);
-		return "posts";
+		return true;
 	}
 	
 	@GetMapping("/")
