@@ -38,7 +38,7 @@ function ajaxPost(elem){
     
 }
 
-function ajaxPost(elem){
+function editPost(elem){
     //var formData = CKEDITOR.instances.content.getData();
 
     var data = CKEDITOR.instances.editor.getData();
