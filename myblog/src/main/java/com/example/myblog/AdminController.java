@@ -1,10 +1,13 @@
 package com.example.myblog;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,14 +30,21 @@ public class AdminController {
 	}
 
 	@GetMapping("/posts")
-	public String postsPage() {
+	public String postsPage(Model model) {
+		
+		List<Post> posts = new ArrayList<Post>(); 
+		
+		this.postRepository.findAll().forEach(i -> posts.add(i));
+		
+		model.addAttribute("posts", posts);
+		
 		return "posts";
 	}
 	
 	@PostMapping(path="/savepost", consumes = MediaType.TEXT_HTML_VALUE)
-	public boolean savePost(@RequestBody String body) throws InterruptedException {
+	public String savePost(@RequestBody String body) throws InterruptedException {
 		
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		
 		Post post = new Post();
 		post.setTitle("HTML POST");
@@ -42,7 +52,7 @@ public class AdminController {
 		post.setSummary("Summary");
 		post.setCreatedAt(new Date());
 		postRepository.save(post);
-		return true;
+		return "posts";
 	}
 	
 	@GetMapping("/")
