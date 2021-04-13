@@ -8,13 +8,10 @@ $(document).ready(
 				})
 			});
 
-
 function ajaxPost(elem){
     //var formData = CKEDITOR.instances.content.getData();
 
     var data = CKEDITOR.instances.editor.getData();
-    console.log('Check'+data);
-
     $.ajax({
         type : "POST",
         contentType : "text/html",
@@ -36,6 +33,31 @@ function ajaxPost(elem){
     });
     
     
+}
+
+function fetchPost(id){
+	
+	var $id = id;
+	$.ajax({
+		type: "GET",
+	    url : "/admin/fetchpost",
+	    data : {
+	    	id : $id
+	    },
+	    dataType : 'json',
+	    success : function(result){
+	    	console.log('Success' + JSON.stringify(result));
+	    	 CKEDITOR.instances.posteditor.updateElement();
+	    	 CKEDITOR.instances.posteditor.setData('');
+	    	 CKEDITOR.instances.posteditor.setData(''+result);
+	    },
+	    error : function(e){
+	    	console.log("Error", e);
+	    }
+	    
+	});
+	
+	
 }
 
 function editPost(elem){
@@ -90,3 +112,8 @@ $('#createPost').on('hidden.bs.modal', function () {
     var $this = $("#saveForm");
     BtnReset($this);
 });
+
+$('#editPost').on('show.bs.modal', function(e){
+	var $editId =  $(e.relatedTarget).attr('id');
+	fetchPost($editId);
+})
