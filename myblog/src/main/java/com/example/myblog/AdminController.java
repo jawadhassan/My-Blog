@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,7 +47,7 @@ public class AdminController {
 	}
 
 	@PostMapping(path = "/savepost", consumes = MediaType.TEXT_HTML_VALUE)
-	public String savePost(@RequestBody String body) throws InterruptedException {
+	public String savePost(@RequestBody String body)  {
 
 //		Thread.sleep(2000);
 
@@ -57,6 +58,28 @@ public class AdminController {
 		post.setCreatedAt(new Date());
 		postRepository.save(post);
 		return "posts";
+	}
+	
+	@PatchMapping(path = "/editpost/{id}/", consumes = MediaType.TEXT_HTML_VALUE)
+	public @ResponseBody Post editPost(@PathVariable("id")  Long id,@RequestBody String body) {
+		 
+		
+		 Optional<Post> record = this.postRepository.findById(Long.valueOf(id));
+		 this.postRepository.findById(Long.valueOf(id)); if(record.isPresent()) {
+		 
+			 if(body != null && !body.isEmpty()) { 
+				 Post post = record.get(); 
+				 post.setContent(body); 
+				 return this.postRepository.save(post); 
+				 
+			  }
+		  
+		  }
+		 
+		  
+		  return null;
+		 
+		
 	}
 
 	/*
