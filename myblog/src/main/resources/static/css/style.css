@@ -40,6 +40,3 @@ body {
 #page-content {
   flex: 1 0 auto;
 }
-#sticky-footer {
-  flex: auto 0 auto;
-}
