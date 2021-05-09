@@ -13,8 +13,8 @@
 padding: 2.5rem 0;
 color: #999;
 text-align: center;
-/* background-color: #f9f9f9; */
-background-color: black; 
+background-color: #f9f9f9; 
+/* background-color: black; */
 border-top: .05rem solid #e5e5e5;
 }
 
@@ -39,4 +39,8 @@ body {
 
 #page-content {
   flex: 1 0 auto;
+}
+
+.postTitle{
+	margin-bottom: 2rem;
 }
