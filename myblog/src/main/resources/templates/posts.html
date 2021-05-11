@@ -23,13 +23,14 @@
 							<span class="navbar-toggler-icon"></span>
 						</button>
 						<div id="navbarMenu" class="collapse navbar-collapse">
-							<ul class="navbar-nav mr-auto">
+							 <ul class="navbar-nav mr-auto">
 								<li class="nav-item">
 									<a class="nav-link"> Posts</a></li>
-								<li class="nav-item">
-									<a class="nav-link">Users</a></li>	
+								<!-- <li class="nav-item">
+									<a class="nav-link">Users</a></li> -->	
 							</ul>
-							<h6 class="px-md-2">Welcome Bud!!</h6>
+							<!-- <span sec:authentication="name">Username</span> -->
+							<h6 class="px-md-2" >Welcome <span sec:authentication="name">Username</span>!!</h6>
 							<button class="my-2 my-md-0 btn btn-outline-primary" type="button">Log out</button>
 						</div>
 					</nav>

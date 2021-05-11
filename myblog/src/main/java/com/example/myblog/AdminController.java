@@ -34,7 +34,7 @@ public class AdminController {
 		this.postRepository = postRepository;
 	}
 
-	@GetMapping("/posts")
+	@GetMapping("/")
 	public String postsPage(Model model) {
 
 		List<Post> posts = new ArrayList<Post>();
@@ -106,9 +106,8 @@ public class AdminController {
 	   return null;
 	}
 
-	@GetMapping("/")
-	public String adminPage() {
-		return "admin";
-	}
+	/*
+	 * @GetMapping("/") public String adminPage() { return "admin"; }
+	 */
 
 }
