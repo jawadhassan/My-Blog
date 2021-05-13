@@ -24,22 +24,22 @@ public class MyblogApplication {
 	  @Override public void run(String... args) throws Exception { 
 		  
 		  
-	  post.save(new
-	        Post("Jawad Featured Post", new Date(),
-	             "This is wider card with supporting text below as a natural lead-in to additional content"
-	             , "This is wider card ",true,false));
-	  
-	  post.save(new
-		        Post("Post title", new Date(),
-		             "This is wider card with supporting text below as a natural lead-in to additional content"
-		             , "Second wider card ",true,false));
-	  
-	  
-	  post.save(new
-		        Post("Build Blog Step By Step Yohoo!!!", new Date(),
-		             "You will learn how to build blog based on Spring Boot Step By Step, Bootstrap and Thymeleaf is used for frontend"
-		             , "You will learn how to build blog based on Spring Boot Step By Step, Bootstrap and Thymeleaf is used for frontend ",false,true));
-	  
+				
+				  post.save(new Post("Jawad Featured Post", new Date(),
+				  "This is wider card with supporting text below as a natural lead-in to additional content"
+				  , "This is wider card ",true,false));
+				  
+				  post.save(new Post("Post title", new Date(),
+				  "This is wider card with supporting text below as a natural lead-in to additional content"
+				  , "Second wider card ",true,false));
+				  
+				  
+				  post.save(new Post("Build Blog Step By Step Yohoo!!!", new Date(),
+				  "You will learn how to build blog based on Spring Boot Step By Step, Bootstrap and Thymeleaf is used for frontend"
+				  ,
+				  "You will learn how to build blog based on Spring Boot Step By Step, Bootstrap and Thymeleaf is used for frontend "
+				  ,false,true));
+				 	  
 	  
 	 /* post.save(new
 		        Post("Sample blog post 1", new Date(),
