@@ -2,50 +2,72 @@ $(document).ready(
 			 function(){
 				 
 				 var $editId;
+				 var $deleteId;
 				 
 				 $('#editPost').on('show.bs.modal', function(e){
 						$editId =  $(e.relatedTarget).attr('id');
-						//ajaxPatch($this, $editId);
 					}); 
+		
 				 
 				$("#saveForm").click(function(event){
-					console.log('Check');
+					console.log('Saving Post...');
+					var $value = $("#postTitle").val();
+					var $text_data = CKEDITOR.instances.editor.getData();
+					var $data = {
+							title : $value,
+							content : $text_data
+					};
+					console.log('Saving Post...'+ JSON.stringify($data));
 					var $this = $(this);
 					BtnSaving($this);
-					ajaxPost($this);
+					ajaxPost($this,JSON.stringify($data));
 				})
 				
 				$("#editForm").click(function(event){
-					console.log('Check');
+					console.log('Saving Changes...');
 					var $this = $(this);
 					BtnSaving($this);
-						//var $editId =  $(e.relatedTarget).attr('id');
-						ajaxPatch($this, $editId);
+					ajaxPatch($this, $editId);
+				
+				})
+				
+				$('#confirmDelete').on('show.bs.modal', function(e){
+					$deleteId =  $(e.relatedTarget).attr('id');
+				})
+				
+				
+				$("#deletepost").click(function(event){
+					console.log('Deleting Post...');
+					var $this = $(this);
+					BtnDeleting($this);
+					deletePost($this,$deleteId);
 				
 				})
 			});
 
 
-function ajaxPost(elem){
-    //var formData = CKEDITOR.instances.content.getData();
+function ajaxPost(elem, data){	
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
 
-    var data = CKEDITOR.instances.editor.getData();
+//    var data = CKEDITOR.instances.editor.getData();
     $.ajax({
         type : "POST",
-        contentType : "text/html",
         data:data,
-        dataType : 'text',
+        dataType: 'json',
+        contentType: 'application/json',
         url: "/admin/savepost",
         success : function(result){
-            console.log('Success');
+            console.log('Success: '+ result);
             $(elem).html(
                         `<span class="glyphicon glyphicon-align-left" role="status" aria-hidden="true"></span> Saved`	
             );
-            //CKEDITOR.instances.editor.updateElement();
-            //BtnReset(elem);
         },
         error : function(e){
-            console.log("Error:"+ e);
+            console.log("Error: "+ e);
             BtnReset(elem);
         }
     });
@@ -55,7 +77,12 @@ function ajaxPost(elem){
 
 
 function ajaxPatch(elem, id){
-    //var formData = CKEDITOR.instances.content.getData();
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+	
 	var $id = id;
     var data = CKEDITOR.instances.posteditor.getData();
     var postData = new Array();
@@ -66,20 +93,16 @@ function ajaxPatch(elem, id){
         dataType : 'text',
         url: "/admin/editpost/"+ $id + "/" ,
         success : function(result){
-            console.log('Success');
+            console.log('Success: ' + result);
             $(elem).html(
                         `<span class="glyphicon glyphicon-align-left" role="status" aria-hidden="true"></span> Saved`	
             );
-            //CKEDITOR.instances.editor.updateElement();
-            //BtnReset(elem);
         },
         error : function(e){
-            console.log("Error:"+ e);
+            console.log("Error: "+ e);
             BtnReset(elem);
         }
     });
-    
-    
 }
 
 function fetchPost(id){
@@ -94,13 +117,12 @@ function fetchPost(id){
 	    dataType : 'json',
 	    success : function(result){
 	    	$result = result;
-	    	console.log('Success' + JSON.stringify(result));
+	    	console.log('Success: ' + JSON.stringify(result));
 	    	 CKEDITOR.instances.posteditor.updateElement();
-//	    	 CKEDITOR.instances.posteditor.setData('');
 	    	 CKEDITOR.instances.posteditor.setData(''+$result.content);
 	    },
 	    error : function(e){
-	    	console.log("Error", e);
+	    	console.log("Error: ", e);
 	    }
 	    
 	});
@@ -108,6 +130,33 @@ function fetchPost(id){
 	
 }
 
+
+
+function deletePost(elem,id){
+	var $id = id;
+	
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+	
+	$.ajax({
+		type : "DELETE",
+		url : "/admin/deletepost/"+ $id + "/",
+		dataType : 'json',
+		success : function(result){
+			console.log('Success: ' + JSON.stringify(result));
+			 $(elem).html(
+                     `<span class="glyphicon glyphicon-align-left" role="status" aria-hidden="true"></span> Deleted`	
+			 );
+		},
+		error : function(e){
+			console.log("Error:", e);
+            BtnReset(elem);
+		}
+	});
+}
 
 function BtnSaving(elem){
     $(elem).attr("data-original-text", $(elem).html());
@@ -121,7 +170,15 @@ function BtnSaving(elem){
 function BtnReset(elem){
     $(elem).prop("disabled", false);
     $(elem).html($(elem).attr("data-original-text"));
-    //$('#createPost').modal('hide');
+}
+
+
+function BtnDeleting(elem){
+    $(elem).attr("data-original-text", $(elem).html());
+    $(elem).prop("disabled", true);
+    $(elem).html(
+             `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Deleting...`	
+    );
 }
 
 
