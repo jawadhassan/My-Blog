@@ -7,12 +7,20 @@ $(document).ready(
 				 $('#editPost').on('show.bs.modal', function(e){
 						$editId =  $(e.relatedTarget).attr('id');
 					}); 
+		
 				 
 				$("#saveForm").click(function(event){
 					console.log('Saving Post...');
+					var $value = $("#postTitle").val();
+					var $text_data = CKEDITOR.instances.editor.getData();
+					var $data = {
+							title : $value,
+							content : $text_data
+					};
+					console.log('Saving Post...'+ JSON.stringify($data));
 					var $this = $(this);
 					BtnSaving($this);
-					ajaxPost($this);
+					ajaxPost($this,JSON.stringify($data));
 				})
 				
 				$("#editForm").click(function(event){
@@ -38,19 +46,19 @@ $(document).ready(
 			});
 
 
-function ajaxPost(elem){	
+function ajaxPost(elem, data){	
 	var token = $("meta[name='_csrf']").attr("content");
     var header = $("meta[name='_csrf_header']").attr("content");
     $(document).ajaxSend(function(e, xhr, options) {
         xhr.setRequestHeader(header, token);
     });
 
-    var data = CKEDITOR.instances.editor.getData();
+//    var data = CKEDITOR.instances.editor.getData();
     $.ajax({
         type : "POST",
-        contentType : "text/html",
         data:data,
-        dataType : 'text',
+        dataType: 'json',
+        contentType: 'application/json',
         url: "/admin/savepost",
         success : function(result){
             console.log('Success: '+ result);

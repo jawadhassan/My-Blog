@@ -48,14 +48,14 @@ public class AdminController {
 		return "posts";
 	}
 
-	@PostMapping(path = "/savepost", consumes = MediaType.TEXT_HTML_VALUE)
-	public @ResponseBody Post savePost(@RequestBody String body)  {
+	@PostMapping(path = "/savepost")
+	public @ResponseBody Post savePost(@RequestBody Post requestData)  {
 
 //		Thread.sleep(2000);
 
-		Post post = new Post();
-		post.setTitle("HTML POST");
-		post.setContent(body);
+		Post post = requestData;
+		//post.setTitle("HTML POST");
+		//post.setContent(body);
 		post.setSummary("Summary");
 		post.setCreatedAt(new Date());
 		postRepository.save(post);
