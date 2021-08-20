@@ -1,0 +1,83 @@
+.blog-header-logo:hover{
+	text-decoration:none;
+}
+.blog-header-logo{
+	font-family:"PlayfairDisplay", Georgia, "Times New Roman", serif;
+	font-size:2.25rem;
+}
+.blog-header{
+	line-height:1;
+	border-bottom:1px solid #e5e5e5;
+}
+.blog-footer{
+padding: 2.5rem 0;
+color: #999;
+text-align: center;
+background-color: #f9f9f9; 
+/* background-color: black; */
+border-top: .05rem solid #e5e5e5;
+}
+
+#bootstrap-overrides h1, #bootstrap-overrides h2, #bootstrap-overrides h3, #bootstrap-overrides h4, #bootstrap-overrides h5, #bootstrap-overrides h6{
+	font-family:"PlayfairDisplay", Georgia, "Times New Roman", serif;
+}
+#detailpage{
+	width: 60%;
+	margin-top:2rem;
+	margin-bottom:5rem;
+}
+
+.coverImage{
+	width:100%;
+	height:auto;
+	margin-top:2rem;
+	margin-bottom:2rem;
+	
+}
+
+.blog-pagination {
+	margin-bottom: 4rem;
+}
+
+.blog-pagination > .btn {
+	border-radius: 2rem;
+}
+
+body {
+  height: 100%;
+}
+
+.blog-post {
+	margin-bottom: 4rem;
+}
+
+#page-content {
+  flex: 1 0 auto;
+}
+
+.postTitle{
+	margin-bottom: 2rem;
+}
+
+
+.blog-post-title{
+	
+}
+
+.blog-post-subtitle{
+	font-size:21px;
+	font-family:sans-serif;
+	color:rgb(117, 117, 117);
+}
+
+
+.post-content{
+	font-size:21px;
+	font-family:"PlayfairDisplay", Georgia, "Times New Roman", serif;
+	line-height:2.5rem;
+}
+
+
+.comments-list .media{
+	border-bottom:1px dotted #ccc;
+}
