@@ -25,7 +25,7 @@
 						<a class="text-muted" href="#">
 							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
 						</a>
-						<a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a>
+						<!-- <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a> -->
 					</div>
 				</div>
 			</header>
@@ -85,9 +85,8 @@
 		<main class="container" role="main">
 			<div class="row">
 				<div class="col-md-8 blog-main">
-					<h3 class="pg-3 mb-4 font-italic border-bottom"> From the Firehouse</h3>
-				
-					<div class="blog-post" th:each="post : ${posts}">
+					<h3 class="pg-3 mb-4 font-italic border-bottom"> From the Firehouse</h3>	
+					<div class="blog-post" th:each="post : ${paginationPosts}">
 						<h2 class="blog-post-title" th:text=${post.title}>Sample blog post</h2>
 						<p class="blog-post-meta" th:text="${#dates.format(post.createdAt, 'MMM dd yyyy')}">
 							January 1, 2014 by
@@ -97,14 +96,14 @@
 							This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.
 						</p>
 						<hr>
-						<p th:text=${post.content}>
-							Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+						<p th:utext=${post.content}>
+							Cum sociis natoque penatibus et magnis, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
 						</p>
 					</div>
 			
-				<nav class="blog-pagination">
-					<a class="btn btn-outline-primary" th:href="">Older</a>
-					<a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+				<nav class="blog-pagination" th:if="${paginationPosts.totalPages gt 0}">
+					<a class="btn btn-outline-primary" th:classappend="${paginationPosts.number eq 0} ? 'disabled'" th:href="@{/?page={id}(id=${paginationPosts.number lt 2 ? 1 : paginationPosts.number})}">Newer</a>
+					<a class="btn btn-outline-secondary" th:classappend="${paginationPosts.number + 1 eq paginationPosts.totalPages} ? 'disabled'" th:href="@{/?page={id}(id=${paginationPosts.number + 2})}">Older</a>
 				</nav>
 			</div>
 		
@@ -142,7 +141,7 @@
 		
 		</div>
 		</main>
-		<footer class="blog-footer">
+		 <footer class="blog-footer">
 			<p>Theme inspired by Bootsrap Blog Theme
 				<a href="#">Spring Blog</a>
 			    by
@@ -151,7 +150,7 @@
 			<p>
 				<a href="#">Back to top</a>
 			</p>
-		</footer>
+		</footer> 
 		
 		
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

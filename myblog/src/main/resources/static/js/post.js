@@ -9,7 +9,7 @@ $(document).ready(
 					}); 
 		
 				 
-				$("#saveForm").click(function(event){
+				/*$("#saveForm").click(function(event){
 					console.log('Saving Post...');
 					var $value = $("#postTitle").val();
 					var $text_data = CKEDITOR.instances.editor.getData();
@@ -21,7 +21,7 @@ $(document).ready(
 					var $this = $(this);
 					BtnSaving($this);
 					ajaxPost($this,JSON.stringify($data));
-				})
+				})*/
 				
 				$("#editForm").click(function(event){
 					console.log('Saving Changes...');
@@ -182,7 +182,35 @@ function BtnDeleting(elem){
 }
 
 
-$('#createPost').on('hidden.bs.modal', function () {
+
+var quill = new Quill('#editor', {
+	modules: {
+    toolbar: [
+      ['bold', 'italic'],
+      ['link', 'blockquote', 'code-block', 'image'],
+      [{ list: 'ordered' }, { list: 'bullet' }]
+    ]
+  },
+    theme: 'snow'
+});
+
+
+var form = document.querySelector('form');
+form.onsubmit = function() {
+  // Populate hidden form on submit
+  var about = document.querySelector('input[name=about]');
+  about.value = JSON.stringify(quill.getContents());
+  
+  console.log("Submitted", $(form).serialize(), $(form).serializeArray());
+  
+  // No back end to actually submit to!
+  alert('Open the console to see the submit data!')
+  return false;
+};
+
+
+
+/*$('#createPost').on('hidden.bs.modal', function () {
     CKEDITOR.instances.editor.updateElement();
     CKEDITOR.instances.editor.setData('');
     var $this = $("#saveForm");
@@ -195,3 +223,4 @@ $('#editPost').on('show.bs.modal', function(e){
 	 var $this = $("#editForm");
 	 BtnReset($this);
 })
+*/

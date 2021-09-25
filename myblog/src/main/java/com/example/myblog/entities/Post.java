@@ -10,13 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
 @Entity
 @Table(name = "Post")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Post {
 
 	
