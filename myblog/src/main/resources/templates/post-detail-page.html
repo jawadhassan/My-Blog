@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Bootstrap CSS -->
+		<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+		<!-- <link th:rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.min.css}"/> -->
+	<title>Spring Blog</title>
+	</head>
+	<body id="bootstrap-overrides">
+			<div class="container">	
+				<header class="blog-header py-3">
+					<div class="row flex-nowrap justify-content-between align-items-center">
+						<div class="col-4 pt-1">
+							<a class="text-muted" href="#">Subscribe</a>
+						</div>
+						<div class="col-4 text-center">
+							<a class="blog-header-logo text-dark" href="#">Spring Blog</a>
+						</div>
+						<div class="col-4 d-flex justify-content-end align-items-center">
+							<a class="text-muted" href="#">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
+							</a>
+						</div>
+					</div>
+				</header>
+			</div>	
+			<!-- <div class="container" id="detailpage"> -->
+			<div class = "container">
+				<div class="d-flex justify-content-center row">
+				  <div class="col-md-8 mt-4">  
+				  	<h1 class="blog-post-title" th:utext=${post.title}>This is heading</h1>
+				  	<p class="blog-post-subtitle">It's not just about heading only</p>
+				  	<div class="d-flex flex-row user-info">
+						<img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="50">
+						<div class="d-flex flex-column justify-content-start ml-2">
+					    <span class="d-block font-weight-bold name">Marry Andrews</span><span th:text="${#dates.format(post.createdAt, 'MMM dd yyyy')}">Jan 2020</span>
+						</div>    
+					</div>
+				  </div>	
+				   <div class="col-md-8">
+				   	<div class="d-flex flex-row user-info">
+				  		<img class="img-fluid mx-auto d-block coverImage rounded"   alt="Banner Image" th:src="@{/images/DetailPage.jpg}" data-holder-rendered="true" />
+				   	</div>
+				   	<!-- <p class="post-content"> -->
+				   	<div th:utext="${post.content}" class="post-content">
+				   	Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+				   	Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+				   	Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+				   	Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+				   	Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.
+				   	</div>
+				   </div>	
+				</div>  
+				  <div>
+				   
+				  </div> 	
+			</div>
+<!-- 			<div class="container mt-5">
+				<div class="d-flex justify-content-center row">
+					<div class="col-md-8">
+						<div class="d-flex flex-column comment-section">
+							<div class="bg-white p-2">
+								<div class="d-flex flex-row user-info">
+									<img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="50">
+									<div class="d-flex flex-column justify-content-start ml-2">
+									    <span class="d-block font-weight-bold name">Marry Andrews</span><span>Jan 2020</span>
+									</div>    
+								 </div>									
+								<div class="mt-2">
+									<p class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+								</div>
+								<div class="bg-white">
+									<div class="d-flex flex-row">
+										<div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Like</span></div>
+										<div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span class="ml-1">Comment</span></div>
+										<div class="like p-2 cursor"><i class="fa fa-thumbs-o-up"></i><span lass="ml-1">Share</span></div>
+									</div>
+								</div>
+								<div class="bg-light p-2">
+									<div class="d-flex flex-row align-items-start"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40"><textarea class="form-control ml-1 shadow-none textarea"></textarea></div>
+								    <div class="mt-2 text-right"><button class="btn btn-primary btn-sm shadow-none" type="submit">Post Comment</button><button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="button">Cancel</button></div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> -->
+		    <footer class="blog-footer">
+				<p>Theme inspired by Bootsrap Blog Theme
+					<a href="#">Spring Blog</a>
+			    		by
+			   		<a href="#">@Anonymous</a>
+				</p>
+				<p>
+					<a href="#">Back to top</a>
+				</p>
+			</footer> 
+			<!-- Image by <a href="https://pixabay.com/users/illuvis-3450147/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=6338620">Ian Lindsay</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=6338620">Pixabay</a> -->
+			<!-- <script th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script> -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</body>
+</html>	

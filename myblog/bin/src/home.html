@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Bootstrap CSS -->
+		<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
+	<title>Spring Blog</title>
+	</head>
+	<body id="bootstrap-overrides">
+		<div class="container">
+			<header class="blog-header py-3">
+				<div class="row flex-nowrap justify-content-between align-items-center">
+					<div class="col-4 pt-1">
+						<a class="text-muted" href="#">Subscribe</a>
+					</div>
+					<div class="col-4 text-center">
+						<a class="blog-header-logo text-dark" href="#">Spring Blog</a>
+					</div>
+					<div class="col-4 d-flex justify-content-end align-items-center">
+						<a class="text-muted" href="#">
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
+						</a>
+						<!-- <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a> -->
+					</div>
+				</div>
+			</header>
+			<div class="nav-scroller py-1 mb-2"></div>
+			<div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+				<div class="col-md-6 px-0">
+					<h1 class="display-4 font-italic" th:text=${banner.title} >Build Blog Step By Step!!!</h1>
+					<p class="lead my-3" th:text=${banner.summary}>
+						You will learn how to build blog based on Spring Boot Step By Step, Bootstrap and Thymeleaf is used for frontend
+					</p>
+					<p class="lead mb-0">
+						<a class="text-white font-weight-bold" href="#">Continue reading...</a>
+					</p>
+				</div>
+			</div>
+			 <div class="row mb-2"> 
+				<div class="col-md-6" th:each="card : ${cards}">
+					<div class="card flex-md-row mb-4 box-shadow h-md-250">
+						<div class="card-body d-flex flex-column align-items-start">
+							<strong class="d-inline-block mb-2 text-primary">World</strong>
+							<h3 class="mb-0">
+								 <a class="text-dark" href="#" th:text=${card.title}>Title</a> 
+							</h3>
+							<div class="mb-1 text-muted" th:text="${#dates.format(card.createdAt, 'MMM dd yyyy')}">Nov 12</div>
+							<p class="card-text mb-auto"  th:text=${card.summary}>
+								This is wider card with supporting text below as a natural lead-in to additional content.
+							</p>
+							<a href="#">Continue reading</a>
+						</div>
+						<img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]" style="width: 200px; height: 250px;" th:src="@{images/CoverImage.jpg}" data-holder-rendered="true">
+					</div>
+				</div>
+			</div>
+		</div>	
+		<main class="container" role="main">
+			<div class="row">
+				<div class="col-md-8 blog-main">
+					<h3 class="pg-3 mb-4 font-italic border-bottom"> From the Firehouse</h3>	
+					<div class="blog-post" th:each="post : ${paginationPosts}">
+						<h2 class="blog-post-title" th:text=${post.title}>Sample blog post</h2>
+						<p class="blog-post-meta" th:text="${#dates.format(post.createdAt, 'MMM dd yyyy')}">
+							January 1, 2014 by
+							<a href="#">Mark</a>
+						</p>
+						<p th:text=${post.summary}>
+							This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.
+						</p>
+						<hr>
+						<p th:utext="${#strings.abbreviate(post.content,150)}">
+							Cum sociis natoque penatibus et magnis, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+						</p>
+						<a th:href="@{|/post/${post.id}|}">Continue reading</a>
+					</div>
+			
+				<nav class="blog-pagination" th:if="${paginationPosts.totalPages gt 0}">
+					<a class="btn btn-outline-primary" th:classappend="${paginationPosts.number eq 0} ? 'disabled'" th:href="@{/?page={id}(id=${paginationPosts.number lt 2 ? 1 : paginationPosts.number})}">Newer</a>
+					<a class="btn btn-outline-secondary" th:classappend="${paginationPosts.number + 1 eq paginationPosts.totalPages} ? 'disabled'" th:href="@{/?page={id}(id=${paginationPosts.number + 2})}">Older</a>
+				</nav>
+			</div>
+		
+		<aside class="col-md-4 blog-sidebar">
+			<div class="p-3 mb-3 bg-light rounded">
+				<h4 class="font-italic">About</h4>
+				<p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+			</div>
+		</aside>
+		
+		</div>
+		</main>
+		 <footer class="blog-footer">
+			<p>Theme inspired by Bootsrap Blog Theme
+				<a href="#">Spring Blog</a>
+			    by
+			    <a href="#">@Anonymous</a>
+			</p>
+			<p>
+				<a href="#">Back to top</a>
+			</p>
+		</footer> 
+		
+		
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	</body>
+</html>

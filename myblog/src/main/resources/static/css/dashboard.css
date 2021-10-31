@@ -1,0 +1,33 @@
+.sidebar{
+	position:fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	z-index:0;
+	padding:0;
+	box-shadow:inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.nav-link > .right{
+position: absolute;
+right: 1rem;
+top: .7rem;
+}
+  
+/* .nav-link[data-toggle].collapsed:after {
+    content: " ▾";
+    right: 0px;
+}
+.nav-link[data-toggle]:not(.collapsed):after {
+    content: " ▴";
+    right: 0px;
+}  */
+
+.sidebar-sticky{
+	position:sticky;
+	top:48px;
+	height:calc(100vh - 48px);
+	padding-top:.5rem;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
