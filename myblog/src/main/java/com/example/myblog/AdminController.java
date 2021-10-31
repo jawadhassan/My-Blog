@@ -47,6 +47,11 @@ public class AdminController {
 
 		return "posts";
 	}
+	
+	@GetMapping("/dashboard")
+	public String DashboardPage() {
+		return "dashboard";
+	}
 
 	@PostMapping(path = "/savepost")
 	public @ResponseBody Post savePost(@RequestBody Post requestData)  {
