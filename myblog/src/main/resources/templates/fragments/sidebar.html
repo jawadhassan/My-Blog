@@ -1,69 +1,12 @@
-<!-- <!DOCTYPE html>
-<html>
-	
-	<link type="text/css" rel="stylesheet" th:href="@{/css/dashboard.css}" />
-	<link type="text/css" rel="stylesheet" th:href="@{/fontawesome-free-5.15.4-web/css/all.css}" />
-	<link type="text/css" rel="stylesheet" th:href="@{/fontawesome-free-5.15.4-web/css/fontawesome.min.css}" />
-	<div class="col-2 collapse show d-md-flex bg-light pt-2 pl-0 min-vh-100" id="sidemenu">
-		<ul class="nav flex-column flex-nowrap overflow-hidden">
-			<li class="nav-item">
-				<a class="nav-link collapsed text-truncate" href="#submenu" data-toggle="collapse" data-target="#submenu">Posts</a>
-				<div class="collapse" id="submenu" aria-expanded="false">
-					<ul class="flex-column pl-2 nav">
-						<li class="nav-item">
-							<a class="nav-link py-0">Create Posts</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link py-0">Edit Posts</a>
-						</li>
-					</ul>
-				</div>
-			</li>
+<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+	<div class="sidebar-sticky">
+		<ul class="nav flex-column">
+		    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Add New Posts</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Pages</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Comments</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Users</a></li>
 		</ul>
 	</div>
-	<nav class="col-md-2 d-none d-md-block bg-light sidebar">
-		<div class="sidebar-sticky">
-			<ul class="nav flex-column">
-				<li class="nav-item">
-					<a><span>Dashboard</span></a>
-				</li>
-			    <li class="nav-item">
-					<a class="nav-link link-arrow up" href="#submenu" data-toggle="collapse" data-target="#submenu">Post</a>
-					<div class="collapse" id="submenu" aria-expanded="false">
-						<ul class="flex-column pl-2 nav">
-							<li class="nav-item">
-								<a class="nav-link"><span>Create Posts</span></a>
-							</li>
-						    <li class="nav-item">
-								<a class="nav-link"><span>Edit Posts</span></a>
-							</li>
-						</ul>
-					</div>	
-				</li>
-			</ul>
-		</div>
-		<i class="fa fa-camera-retro fa-lg"></i>
-	</nav>
-</html> -->
-	<nav class="col-md-2 d-none d-md-block bg-light sidebar">
-		<div class="sidebar-sticky">
-			<ul class="nav flex-column">
-				<li class="nav-item">
-					<a><span>Dashboard</span></a>
-				</li>
-			    <li class="nav-item">
-					<a class="nav-link" href="#submenu" data-toggle="collapse" data-target="#submenu">Post<i class="right fas fa-angle-left"></i></a>
-					<div class="collapse" id="submenu" aria-expanded="false">
-						<ul class="flex-column pl-2 nav">
-							<li class="nav-item">
-								<a class="nav-link">Create Posts</a>
-							</li>
-						    <li class="nav-item">
-								<a class="nav-link"><span>Edit Posts</span></a>
-							</li>
-						</ul>
-					</div>	
-				</li>
-			</ul>
-		</div>
-	</nav>
+</nav>
