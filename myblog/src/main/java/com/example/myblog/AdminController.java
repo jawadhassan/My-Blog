@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.myblog.data.PostRepository;
 import com.example.myblog.entities.Post;
 import com.example.myblog.entities.ResponseObj;
+import com.example.myblog.entities.Root;
 import com.example.myblog.entities.User;
 
 @Controller
@@ -61,7 +63,10 @@ public class AdminController {
 	
 
 	@PostMapping(path="/check/{check}", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String check(@RequestBody String requestData,@PathVariable("check") String check)  {
+	public @ResponseBody String check(@RequestBody Root requestData,@PathVariable("check") String check)  {
+		
+	    System.out.println("Check"+requestData);	
+		
 		String result = "{\r\n"
 				+ "  \"data\": [\r\n"
 				+ "    [\r\n"

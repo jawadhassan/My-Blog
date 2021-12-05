@@ -27,8 +27,9 @@ $(document).ready(function() {
 			 "contentType": "application/json", 
 			 "type" : 'POST',
 			 "url" : '/admin/check/1',
-			 "data": function(){
-                	 return JSON.stringify(obj);
+			 "data": function(d){
+				     d.data = obj;
+                	 return JSON.stringify(d);
             	} 	
 			}
     } );
