@@ -1,5 +1,6 @@
 package com.example.myblog;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -62,10 +64,13 @@ public class AdminController {
 	}
 	
 
-	@PostMapping(path="/check/{check}", consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String check(@RequestBody Root requestData,@PathVariable("check") String check)  {
+	@PostMapping(path="/check/{check}", consumes=MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody Root check(@PathVariable("check") String check,@RequestBody MultiValueMap paramMap)  {
 		
-	    System.out.println("Check"+requestData);	
+	    System.out.println("Check"+paramMap);	
+	    
+	 //   String decodeURL = decode(requestData);  
+     //   System.out.println("Decoded URL: "+decodeURL); 
 		
 		String result = "{\r\n"
 				+ "  \"data\": [\r\n"
@@ -528,7 +533,25 @@ public class AdminController {
 				+ "  ]\r\n"
 				+ " }";
 		System.out.println("This is"+check.toString());
-		return result;
+		ArrayList<String> objectResult = new ArrayList<String>();
+		objectResult.add("Angelica");
+		
+		objectResult.add("Ramos");
+		objectResult.add("System Architect");
+		objectResult.add("London");
+		objectResult.add("9th Oct 09");
+		objectResult.add("$2,875");
+		
+		
+		Root root = new Root();
+		root.draw = 1;
+		root.recordsTotal = 10;
+		root.recordsFiltered = 2;
+		root.data = new ArrayList<List<String>>();
+		root.data.add(objectResult);
+		//requestData.data = new ArrayList(objectResult);
+		//return requestData;
+		return root;
 	}
 
 	
@@ -600,4 +623,21 @@ public class AdminController {
 	 * @GetMapping("/") public String adminPage() { return "admin"; }
 	 */
 
+	
+    public String decode(String url)  
+    {  
+              try {  
+                   String prevURL="";  
+                   String decodeURL=url;  
+                   while(!prevURL.equals(decodeURL))  
+                   {  
+                        prevURL=decodeURL;  
+                        decodeURL= java.net.URLDecoder.decode(decodeURL, "UTF-8" );  
+                   }  
+                   return decodeURL;  
+              } catch (UnsupportedEncodingException e) {  
+                   return "Issue while decoding" +e.getMessage();  
+              }  
+    }  
+	
 }

@@ -9,7 +9,11 @@
 } );*/
 
 
-$(document).ready(function() {
+$('#add_new').click(function(){
+	check();
+})
+
+function check() {
 	
 		
 	const obj = {id:1, fullName: "John", email: "abc", enabled:false};
@@ -24,13 +28,13 @@ $(document).ready(function() {
          ajax : {
 			 "headers": {"X-CSRF-TOKEN": token},	
 			 "dataType" : 'json',
-			 "contentType": "application/json", 
+			 "contentType": "application/x-www-form-urlencoded", 
 			 "type" : 'POST',
 			 "url" : '/admin/check/1',
-			 "data": function(d){
-				     d.data = obj;
-                	 return JSON.stringify(d);
+			 "data": {
+				  id : 2,
+				  fullname  : "James"
             	} 	
 			}
     } );
-} );
+}
