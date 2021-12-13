@@ -7,25 +7,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
 @Entity
 @Table(name = "Post")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Post {
 
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO) 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "post_id")
 	private Long id;
 
-
 	private String title;
+	
+	@OneToOne
+	@JoinColumn(name = "user_id")
+	private User author;
+
+	@OneToOne
+	@JoinColumn(name = "category_id")
+	private Category categories;
 
 	private Date createdAt;
 
@@ -38,7 +46,8 @@ public class Post {
 	
 	private boolean isBanner;
 	
-
+	
+	
 	
 	public Post(String title, Date createdAt, String content, String summary, boolean isFeatured, boolean isBanner) {
 		this.title = title;
@@ -60,12 +69,30 @@ public class Post {
 		this.isBanner = isBanner;
 	}
 
+	
+	
 	public Post() {
 	}
 
 	@PrePersist
 	void createdAt() {
 		this.createdAt = new Date();
+	}
+
+	public User getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(User author) {
+		this.author = author;
+	}
+
+	public Category getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Category categories) {
+		this.categories = categories;
 	}
 
 	public Long getId() {
@@ -121,6 +148,31 @@ public class Post {
 	}
 
 	public void setBanner(boolean isBanner) {
+		this.isBanner = isBanner;
+	}
+
+	public Post(Long id, String title, User author, Category categories, Date createdAt, String content, String summary,
+			boolean isFeatured, boolean isBanner) {
+		this.id = id;
+		this.title = title;
+		this.author = author;
+		this.categories = categories;
+		this.createdAt = createdAt;
+		this.content = content;
+		this.summary = summary;
+		this.isFeatured = isFeatured;
+		this.isBanner = isBanner;
+	}
+	
+	public Post(String title, User author, Category categories, Date createdAt, String content, String summary,
+			boolean isFeatured, boolean isBanner) {
+		this.title = title;
+		this.author = author;
+		this.categories = categories;
+		this.createdAt = createdAt;
+		this.content = content;
+		this.summary = summary;
+		this.isFeatured = isFeatured;
 		this.isBanner = isBanner;
 	}
 

@@ -2,6 +2,7 @@ package com.example.myblog;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.example.myblog.data.PostRepository;
 import com.example.myblog.entities.Post;
@@ -54,5 +56,17 @@ public class HomeController {
 		model.addAttribute("paginationPosts", postRepository.findByIsFeaturedAndIsBanner(false, false, pageRequest));
 
 		return "home";
+	}
+	
+	@GetMapping("/post/{id}")
+	public String postDetailPage(@PathVariable("id")  Long id, Model model) {
+		
+		Optional<Post>post = postRepository.findById(id);
+		if(post.isPresent()) {
+			model.addAttribute("post",post.get());
+		}
+		
+		return "post-detail-page";
+		
 	}
 }

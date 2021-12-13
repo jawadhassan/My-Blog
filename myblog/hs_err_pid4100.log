@@ -1,0 +1,46 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007fbbdf3090ad, pid=4100, tid=7487
+#
+# JRE version: OpenJDK Runtime Environment (14.0.2+12) (build 14.0.2+12-Ubuntu-120.04)
+# Java VM: OpenJDK 64-Bit Server VM (14.0.2+12-Ubuntu-120.04, mixed mode, sharing, tiered, compressed oops, g1 gc, linux-amd64)
+# Problematic frame:
+# C  [libjimage.so+0x30ad]
+#
+# No core dump will be written. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+# If you would like to submit a bug report, please visit:
+#   Unknown
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -XX:+ShowCodeDetailsInExceptionMessages -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:37853 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=43903 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost -Dspring.jmx.enabled=true -Dspring.application.admin.enabled=true -Djava.security.egd=file:/dev/./urandom -XX:TieredStopAtLevel=1 -Dspring.boot.project.name=myblog -javaagent:/home/jawad/eclipse/jee-2021-06/eclipse/configuration/org.eclipse.osgi/410/0/.cp/lib/javaagent-shaded.jar -Dfile.encoding=UTF-8 com.example.myblog.MyblogApplication
+
+Host: Intel(R) Core(TM) i5-2520M CPU @ 2.50GHz, 4 cores, 3G, Linux Lite 5.4
+Time: Sat Oct  2 03:55:47 2021 PKT elapsed time: 4206 seconds (0d 1h 10m 6s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007fbb6c00c800):  JavaThread "RMI TCP Connection(4)-127.0.0.1" daemon [_thread_in_vm, id=7487, stack(0x00007fbbbc1ad000,0x00007fbbbc2ae000)]
+
+Stack: [0x00007fbbbc1ad000,0x00007fbbbc2ae000],  sp=0x00007fbbbc2aa410,  free space=1013k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [libjimage.so+0x30ad]
+C  [libjimage.so+0x3c72]
+C  [libjimage.so+0x4181]  JIMAGE_FindResource+0xf1
+V  [libjvm.so+0x538016]
+V  [libjvm.so+0x53c523]
+V  [libjvm.so+0xda7f12]
+V  [libjvm.so+0xda6a72]
+V  [libjvm.so+0xda8fed]
+V  [libjvm.so+0x5a3ed8]
+V  [libjvm.so+0x7b2846]
+j  javax.management.remote.rmi.RMIConnectionImpl.getClassLoaderFor(Ljavax/management/ObjectName;)Ljava/lang/ClassLoader;+0 java.management.rmi@14.0.2
+j  javax.management.remote.rmi.RMIConnectionImpl.invoke(Ljavax/management/ObjectName;Ljava/lang/String;Ljava/rmi/MarshalledObject;[Ljava/lang/String;Ljavax/security/auth/Subject;)Ljava/lang/Object;+49 java.management.rmi@14.0.2
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x7b941c]
+V  [libjvm.so+0xc1fb29]
+V  [libjvm.so+0xc20641]
+V  [libjvm.so+0x87cc8c]  JVM_InvokeMethod+0x13c
