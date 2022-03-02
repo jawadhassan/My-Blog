@@ -9,8 +9,15 @@
 } );*/
 
 
+$(document).ready(function(){
+	$('#example').dataTable().fnDestroy();
+	 $('#example').DataTable( {
+		 dom: 'Bfrtip'
+    } );
+})
+
 $('#add_new').click(function(){
-	check();
+//	check();
 })
 
 function check() {
@@ -25,6 +32,10 @@ function check() {
     $('#example').DataTable( {
          processing: true,
          serverSide : true,
+		 dom: 'Bfrtip',
+		 buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+         ],
          ajax : {
 			 "headers": {"X-CSRF-TOKEN": token},	
 			 "dataType" : 'json',
