@@ -7,7 +7,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Bootstrap CSS -->
-		<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+		<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" />
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"/>
 		<!-- <link th:rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.min.css}"/> -->
 	<title>Spring Blog</title>
@@ -45,7 +45,7 @@
 				  </div>	
 				   <div class="col-md-8">
 				   	<div class="d-flex flex-row user-info">
-				  		<img class="img-fluid mx-auto d-block coverImage rounded"   alt="Banner Image" th:src="@{/images/DetailPage.jpg}" data-holder-rendered="true" />
+				  		<img class="img-fluid mx-auto d-block coverImage rounded"   alt="Banner Image" th:src="@{/images/DetailPage.jpg}" src="../static/images/DetailPage.jpg" data-holder-rendered="true" />
 				   	</div>
 				   	<!-- <p class="post-content"> -->
 				   	<div th:utext="${post.content}" class="post-content">
